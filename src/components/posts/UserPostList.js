@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, Link } from "react-router-dom"
 import { getAllPosts } from "./PostManager";
+import {  }
 
 export const UserPostList = (props) => {
     console.log(props)
@@ -34,12 +35,13 @@ export const UserPostList = (props) => {
                                     <p>{post.content}</p>
                                     <p>Category: {post.category.label}</p>
                                     
+                                    
 
-                                    {/* <div className="buttons">
-                                        <Button value={entry.id} onClick={() => { editEntry(entry.id) }}>EDIT</Button>
+                                    <div className="buttons">
+                                    <i class="fas fa-edit"><button value={entry.id} onClick={() => { editEntry(entry.id) }}>EDIT</button></i>
                                         <Button className="btn btn-secondary delete" value={entry.id} onClick={() => { deleteEntry(entry.id) }}>DELETE</Button>
 
-                                    </div> */}
+                                    </div>
                                 </div>
                             </>
 
