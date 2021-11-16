@@ -4,7 +4,7 @@ import "./Auth.css"
 
 
 export const Login = () => {
-    const email = useRef()
+    const username = useRef() //was email
     const password = useRef()
     const invalidDialog = useRef()
     const history = useHistory()
@@ -12,20 +12,20 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        return fetch("http://127.0.0.1:8088/login", {
+        return fetch("http://localhost:8000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                username: email.current.value,
+                username: username.current.value, //was email
                 password: password.current.value
             })
         })
             .then(res => res.json())
             .then(res => {
-                if ("valid" in res && res.valid) {
+                if ("token" in res && res.valid) {
                     localStorage.setItem("rare_user_id", res.token )
                     history.push("/")
                 }
@@ -38,7 +38,7 @@ export const Login = () => {
     return (
         <main className="container--login">
             <dialog className="dialog dialog--auth" ref={invalidDialog}>
-                <div>Email or password was not valid.</div>
+                <div>username or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <section>
@@ -46,8 +46,8 @@ export const Login = () => {
                     <h1>Rare Publishing</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
-                        <input ref={email} type="email" id="email" className="form-control" defaultValue="me@me.com" placeholder="Email address" required autoFocus />
+                        <label htmlFor="inputUserName"> Username </label>
+                        <input ref={username} type="username" id="username" className="form-control" defaultValue="me@me.com" placeholder="username address" required autoFocus />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPassword"> Password </label>
