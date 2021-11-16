@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, Link } from "react-router-dom"
 import { getAllPosts } from "./PostManager";
-import {  }
+import { FaEdit } from "react-icons/fa"
 
 export const UserPostList = (props) => {
     console.log(props)
@@ -20,7 +20,7 @@ export const UserPostList = (props) => {
 
             <h2 className="title">Your Posts</h2>
             <div className="allPosts">
-
+            <i class="fas fa-edit"></i>
                 {
                     posts.map((post) => {
                       
@@ -38,8 +38,6 @@ export const UserPostList = (props) => {
                                     
 
                                     <div className="buttons">
-                                    <i class="fas fa-edit"><button value={entry.id} onClick={() => { editEntry(entry.id) }}>EDIT</button></i>
-                                        <Button className="btn btn-secondary delete" value={entry.id} onClick={() => { deleteEntry(entry.id) }}>DELETE</Button>
 
                                     </div>
                                 </div>
