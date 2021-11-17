@@ -7,22 +7,11 @@ export const UserPostList = (props) => {
     console.log(props)
     // const history = useHistory()
     const [posts, setPosts] = useState([])
-    const [isPublished, setIsPublished] = useState(true)
-
-
 
     useEffect(() => {
         getMyPosts()
         .then(data => setPosts(data))
     }, [])
-
-    const togglePublishButton = () => {
-        if (isPublished === true) {
-            setIsPublished(false)
-        } else {
-            setIsPublished(true)
-        }
-    }
         
         return (
             <>
