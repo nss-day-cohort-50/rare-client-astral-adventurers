@@ -36,7 +36,7 @@ export const updateTag = tag => {
 }
 
 export const deleteTag = (tagId, func) => {
-    return fetch(`http://localhost:8000/categories/${tagId}`, {
+    return fetch(`http://localhost:8000/tags/${tagId}`, {
         method: "DELETE",
         headers: {
             "Authorization": `token ${localStorage.getItem("rare_user_id")}`
