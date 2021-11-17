@@ -50,7 +50,6 @@ export const CategoryList = () => {
             <article className="categories">
                 {
                     categories.map(category => {
-                        debugger
                         return <section className="category" key={category.id}>
                             {category.label} <button  
                             onClick={() => handleDelete(category.id, getCategoryList)
