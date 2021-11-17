@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 // import { useHistory, Link } from "react-router-dom"
-import { getMyPosts } from "./PostManager";
+import { getMyPosts, publishOrUnpublish } from "./PostManager";
 // import { FaEdit } from "react-icons/fa"
 
 export const UserPostList = (props) => {
@@ -8,17 +8,20 @@ export const UserPostList = (props) => {
     // const history = useHistory()
     const [posts, setPosts] = useState([])
 
-    useEffect(() => {
+    const fetchMyPosts = ()=>{
         getMyPosts()
         .then(data => setPosts(data))
+    } 
+
+    useEffect(() => {
+        fetchMyPosts()
     }, [])
         
         return (
             <>
-
+            
             <h2 className="title">Your Posts</h2>
             <div className="allPosts">
-
                 {
                     posts.map((post) => {     
                         return <>        
@@ -31,17 +34,16 @@ export const UserPostList = (props) => {
                                 
                                     <div className="buttons">
                                     {
-                                        isPublished ? 
-                                        <button onclick={() => togglePublishButton()}>Unpublish</button>
-                                        : <button onClick={() => togglePublishButton()}>Publish</button>
+                                        post.is_published ? 
+                                        <button onClick={() => publishOrUnpublish(post.id).then(() => fetchMyPosts())}>Unpublish</button>
+                                        : <button onClick={() => publishOrUnpublish(post.id).then(() => fetchMyPosts())}>Publish</button>
                                     }
                                     </div>
                                 </div>
-                                </>
+                            </>
                         }
                     )}
             </div>
-
         </>
     )
 }

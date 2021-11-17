@@ -8,7 +8,6 @@ export const PostList = (props) => {
     const [posts, setPosts] = useState([])
     // const [showComments, setShowComments ] = useState(false)
 
-
     const fetchPosts = ()=>{
         getAllPosts()
         .then(data => setPosts(data))
