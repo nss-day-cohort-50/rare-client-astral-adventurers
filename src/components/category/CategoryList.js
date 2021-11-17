@@ -49,7 +49,7 @@ export const CategoryList = () => {
             <h1>categories</h1>
             <article className="categories">
                 {
-                    categories.sort((a,b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase())).map(category => {
+                    categories.map(category => {
                         return <section className="category" key={category.id}>
                             {category.label} <button  
                             onClick={() => handleDelete(category.id, getCategoryList)
