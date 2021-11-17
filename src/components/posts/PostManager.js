@@ -19,13 +19,21 @@ export const deletePost = (postId, func) => {
         .then(func)
 }
 
-const authorId = localStorage.getItem('rare_user_id')
 export const getMyPosts = (authorId) => {
     return fetch(`http://localhost:8000/posts?author_id=${authorId}}`,{
         headers:{
-            "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+            "Authorization": `token ${localStorage.getItem("rare_user_id")}`
         }})
     .then(res => res.json())
 }
 
-
+export const publishOrUnpublish = (postId) => {
+    return fetch(`http://localhost:8000/posts/${postId}/publish`, {
+        method: "PUT",
+        headers:{
+            "Authorization": `token ${localStorage.getItem("rare_user_id")}`,
+            "Content-Type" : "application/json"
+        },
+    })
+        .then(getAllPosts)
+}

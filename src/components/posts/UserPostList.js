@@ -1,35 +1,28 @@
 import React, { useState, useEffect } from "react"
 // import { useHistory, Link } from "react-router-dom"
-import { getMyPosts } from "./PostManager";
+import { getMyPosts, publishOrUnpublish } from "./PostManager";
 // import { FaEdit } from "react-icons/fa"
 
 export const UserPostList = (props) => {
     console.log(props)
     // const history = useHistory()
     const [posts, setPosts] = useState([])
-    const [isPublished, setIsPublished] = useState(true)
 
-
-
-    useEffect(() => {
+    const fetchMyPosts = ()=>{
         getMyPosts()
         .then(data => setPosts(data))
+    } 
+
+    useEffect(() => {
+        fetchMyPosts()
     }, [])
 
-    const togglePublishButton = () => {
-        if (isPublished === true) {
-            setIsPublished(false)
-        } else {
-            setIsPublished(true)
-        }
-    }
         
         return (
             <>
-
+            
             <h2 className="title">Your Posts</h2>
             <div className="allPosts">
-
                 {
                     posts.map((post) => {     
                         return <>        
@@ -42,17 +35,16 @@ export const UserPostList = (props) => {
                                 
                                     <div className="buttons">
                                     {
-                                        isPublished ? 
-                                        <button onclick={() => togglePublishButton()}>Unpublish</button>
-                                        : <button onClick={() => togglePublishButton()}>Publish</button>
+                                        post.is_published ? 
+                                        <button onClick={() => publishOrUnpublish(post.id).then(() => fetchMyPosts())}>Unpublish</button>
+                                        : <button onClick={() => publishOrUnpublish(post.id).then(() => fetchMyPosts())}>Publish</button>
                                     }
                                     </div>
                                 </div>
-                                </>
+                            </>
                         }
                     )}
             </div>
-
         </>
     )
 }
