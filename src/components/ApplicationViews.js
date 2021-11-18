@@ -7,31 +7,37 @@ import { PostDetails } from "./posts/PostDetail"
 import { PostList } from "./posts/PostList"
 import { TagList } from "./tags/TagList"
 import { CommentForm } from "./comments/CommentForm"
+import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = () => {
     return (
         <>
-        <Route exact path='/Categories'>
-            <CategoryList />
-        </Route>
-        <Route exact path='/Categories/:categoryId(\d+)'>
-            <CategoryForm />
-        </Route>
-        <Route exact path="/userPosts">
-                <UserPostList />
-        </Route>
-        <Route exact path="/posts">
-                <PostList />
-        </Route>
-        <Route exact path="/posts/:postId(\d+)">
-                <PostDetails />
-        </Route>
-        <Route exact path="/tags">
-                <TagList />
-        </Route>
-        <Route exact path="/commentForm/:postId(\d+)">
-                <CommentForm />
-        </Route>
+                <Route exact path='/Categories'>
+                        <CategoryList />
+                </Route>
+                
+                <Route exact path='/Categories/:categoryId(\d+)'>
+                        <CategoryForm />
+                </Route>
+                <Route exact path="/userPosts">
+                        <UserPostList />
+                </Route>
+                <Route exact path="/posts">
+                        <PostList />
+                </Route>
+                <Route exact path="/posts/form">
+                        <PostForm />
+                </Route>
+                <Route exact path="/posts/:postId(\d+)">
+                        <PostDetails />
+                </Route>
+                <Route exact path="/tags">
+                        <TagList />
+                </Route>
+                <Route exact path="/commentForm/:postId(\d+)">
+                        <CommentForm />
+                </Route>
+
         </>
     )
 
