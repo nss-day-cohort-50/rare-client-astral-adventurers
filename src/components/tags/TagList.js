@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getAllTags } from "./TagManager";
+import { deleteTag, getAllTags } from "./TagManager";
 import { Tag } from "./Tag";
 import { TagForm } from "./TagForm";
+import { Link, useHistory } from "react-router-dom"
+
 
 export const TagList = () => {
     const [tags, setTags] = useState([])
     const [viewForm, setViewForm] = useState(false) //Change the state onClick of button
-
+    const history = useHistory()
 
     const getTagList = () => {
         getAllTags()
@@ -17,6 +19,9 @@ export const TagList = () => {
         getTagList()   
     }, [])
 
+    const handleDelete = (id, func) => {
+        deleteTag(id, func)
+    }
 
     const toggleForm = () => {
         if (viewForm == true) {
@@ -44,7 +49,19 @@ export const TagList = () => {
             <h2 className="titleTags">All Tags</h2>
                 <div>
                 {
-                    tags.map(tag => <Tag key={tag.id} singleTag={tag}/>) //Passing singleTag as a prop to Tag.js
+                    tags.map(tag => {
+                        return <section className="tag" key={tag.id}>
+                            {tag.label} <button  
+                            onClick={() => handleDelete(tag.id, getTagList)
+                            }
+                            className='delete-btn'>
+                                delete</button> 
+                            <button onClick={() => history.push(`/tags/${tag.id}`)
+                            }
+                            className='delete-btn'>
+                                edit</button> 
+                        </section>
+                    })
                 }
                 </div>
                 
@@ -55,4 +72,28 @@ export const TagList = () => {
     )
 }
 
+
+
+
+
+
+
+
+
+// return (
+//     <>
+    
+//         <h2 className="titleTags">All Tags</h2>
+//             <div>
+//             {
+//                 tags.map(tag => <Tag key={tag.id} singleTag={tag}/>) //Passing singleTag as a prop to Tag.js
+//             }
+//             </div>
+            
+//                 {viewForm ? formJSX
+             
+//                 : noFormJSX}    
+//     </>
+// )
+// }
 

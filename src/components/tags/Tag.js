@@ -1,17 +1,15 @@
-import React from "react"
-
-export const Tag = ({ singleTag }) => {
+// import React from "react"
 
 
-return (
-        <>
-            <div>
-                <p>{singleTag.label}</p>
-                <button>Edit Tag</button>
-                <button>Delete Tag</button>
-            </div>
+// export const Tag = ({ singleTag }) => {
+
+// return (
+//         <>
+//             <div>
+//                 <p>{singleTag.label}</p>
+//             </div>
 
         
-        </>
-    )
-}
+//         </>
+//     )
+// }
