@@ -42,7 +42,7 @@ export const createNewPost = (post) => {
     return fetch(`http://localhost:8000/posts`,{
         method: "POST",
         headers:{
-            "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+            "Authorization": `token ${localStorage.getItem("rare_user_id")}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(post)
@@ -54,7 +54,7 @@ export const updatePost = (post) => {
     return fetch(`http://localhost:8000/posts/${post.id}`,{
         method: "PUT",
         headers:{
-            "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+            "Authorization": `token ${localStorage.getItem("rare_user_id")}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(post)

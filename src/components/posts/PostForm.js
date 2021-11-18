@@ -4,7 +4,7 @@ import { getCategories } from "../category/CategoryManager"
 import { useParams, useHistory } from 'react-router-dom'
 
 export const PostForm = () => {
-    const [ categories, setCategories ] = useState([])
+    const [categories, setCategories] = useState([])
     const { postId } = useParams()
     const [post, setPost] = useState({})
     const history = useHistory()
@@ -23,37 +23,40 @@ export const PostForm = () => {
     // Get posts from API when component initializes
     useEffect(() => {
         if (editMode) {
-            
+
             getPostById(parseInt(postId)).then((postData) => {
                 setPost(
-                    {...postData,
-                        authorID : post.author.id,
+                    {
+                        ...postData,
+                        authorId: post.author.id,
                         categoryId: post.category.id,
                         imageUrl: post.image_url,
                         publicationDate: post.publication_date,
                         isPublished: post.is_published
                     }
-            )}
-            )}
+                )
+            }
+            )
+        }
         getCategories().then(categoriesData => setCategories(categoriesData))
     }, [])
 
-    
+
 
     const createPost = () => {
-        // debugger
-     
+        debugger
+
 
         if (post.categoryId === 0) {
             window.alert("Please select a category")
         } else {
             if (editMode) {
                 // PUT
-                updatePost()
+                updatePost(post)
                     .then(() => history.push("/posts"))
             } else {
                 // POST
-                createNewPost()
+                createNewPost(post)
                     .then(() => history.goBack())
             }
         }
@@ -103,7 +106,7 @@ export const PostForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="imageUrl">Image: </label>
-                    <textarea type="text" name="imageUrl"  className="form-control"
+                    <textarea type="text" name="imageUrl" className="form-control"
                         placeholder="Image url"
                         defaultValue={post.imageUrl}
                         onChange={handleControlledInputChange}
