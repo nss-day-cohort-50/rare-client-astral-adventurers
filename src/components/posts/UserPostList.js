@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-// import { useHistory, Link } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { getMyPosts, publishOrUnpublish } from "./PostManager";
 // import { FaEdit } from "react-icons/fa"
 
@@ -26,7 +26,7 @@ export const UserPostList = (props) => {
                     posts.map((post) => {     
                         return <>        
                                 <div className="space-between">
-                                    <h4 className="mp-title">Title: {post.title}</h4>
+                                    <h4 className="mp-title"><Link to={`/posts/${post.id}`}>Title: {post.title}</Link></h4>
                                     <p>{post.author?.first_name} {post.author?.last_name}</p>
                                     <p>{post.publication_date}</p>
                                     <p>{post.content}</p>
