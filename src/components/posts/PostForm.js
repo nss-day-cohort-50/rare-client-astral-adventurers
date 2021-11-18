@@ -44,7 +44,6 @@ export const PostForm = () => {
 
 
     const createPost = () => {
-        debugger
 
 
         if (post.categoryId === 0) {
