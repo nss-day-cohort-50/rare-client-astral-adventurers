@@ -42,15 +42,3 @@ return (
 }
 
 
-
-
-
-// approved: false
-// author: {id: 2, bio: "hey gurl",…}
-// category: {id: 1, label: "Life"}
-// content: "Ladidaaaaaa"
-// id: 1
-// image_url: null
-// is_published: false
-// publication_date: "2021-11-15"
-// title: "Life"
