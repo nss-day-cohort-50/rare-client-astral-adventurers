@@ -37,7 +37,7 @@ export const PostList = (props) => {
                             return <>
                                 <div className="space-between">
                                     <h4 className="mp-title" key={`post--${post.id}`}><Link to={`/posts/${post.id}`}>Title: {post.title}</Link></h4>
-                                    <p>Author: {post.author?.first_name} {post.author?.last_name}</p>
+                                    <p>Author: {post.author?.user?.first_name} {post.author?.user?.last_name}</p>
                                     <p>Date: {post.publication_date}</p>
                                     <p>{post.content}</p>
                                     <p>Category: {post.category?.label}</p>

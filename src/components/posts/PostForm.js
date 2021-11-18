@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { createNewPost, updatePost, getPostById } from "./PostManager"
 import { getCategories } from "../category/CategoryManager"
 import { useParams, useHistory } from 'react-router-dom'
-import { HumanDate } from "../utils/HumanDate"
 
 export const PostForm = () => {
     const [ categories, setCategories ] = useState([])
@@ -43,34 +42,18 @@ export const PostForm = () => {
 
     const createPost = () => {
         // debugger
-        const categoryId = parseInt(post.category_id)
+     
 
-        if (categoryId === 0) {
+        if (post.categoryId === 0) {
             window.alert("Please select a category")
         } else {
             if (editMode) {
                 // PUT
-                updatePost({
-                    title: post.title,
-                    publication_date: post.publicationDate,
-                    content: post.content,
-                    author: post.authorId,
-                    category: post.categoryId,
-                    is_published: post.isPublished,
-                    image_url: post.imageUrl
-                })
+                updatePost()
                     .then(() => history.push("/posts"))
             } else {
                 // POST
-                createNewPost({
-                    title: post.title,
-                    publication_date: HumanDate(),
-                    content: post.content,
-                    author: parseInt(localStorage.getItem("rare_user_id")),
-                    category: post.categoryId,
-                    is_published: false,
-                    image_url: post.imageUrl
-                })
+                createNewPost()
                     .then(() => history.goBack())
             }
         }
@@ -81,8 +64,8 @@ export const PostForm = () => {
             <h2 className="postForm__title">{editMode ? "Update Post" : "Create Post"}</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Post Title: </label>
-                    <input type="text" name="name" required autoFocus className="form-control"
+                    <label htmlFor="title">Post Title: </label>
+                    <input type="text" name="title" required autoFocus className="form-control"
                         placeholder="Title"
                         defaultValue={post.title}
                         onChange={handleControlledInputChange}
@@ -91,7 +74,7 @@ export const PostForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="breed">Content: </label>
+                    <label htmlFor="content">Content: </label>
                     <textarea type="text" name="content" required className="form-control"
                         placeholder="Post Content"
                         defaultValue={post.content}
@@ -101,8 +84,8 @@ export const PostForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="category">Category: </label>
-                    <select name="category" className="form-control"
+                    <label htmlFor="categoryId">Category: </label>
+                    <select name="categoryId" className="form-control"
                         value={post.categoryId}
                         onChange={handleControlledInputChange}>
 
@@ -119,8 +102,8 @@ export const PostForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="breed">Image: </label>
-                    <textarea type="text" name="content"  className="form-control"
+                    <label htmlFor="imageUrl">Image: </label>
+                    <textarea type="text" name="imageUrl"  className="form-control"
                         placeholder="Image url"
                         defaultValue={post.imageUrl}
                         onChange={handleControlledInputChange}
