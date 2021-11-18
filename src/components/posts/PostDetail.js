@@ -27,7 +27,7 @@ export const PostDetails = () => {
 return (
     <section className="post">
         <h3 className="post__title">Title: {post.title}</h3>
-        <div className="post__publication_date">{post.imageUrl!= null ? <img src={post.imageUrl} alt="profile Picture" />: ""}</div>
+        <div className="post__publication_date">{post.imageUrl!= "" ? <img src={post.imageUrl} alt="profile Picture" />: ""}</div>
         <div className="post__publication_date">Date Published: {post.publicationDate}</div>
         <div className="post__content">Content: {post.content}</div>
         <div className="post__user_id">By: {post.username}</div>
