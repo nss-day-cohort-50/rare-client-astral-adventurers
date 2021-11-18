@@ -16,7 +16,6 @@ export const UserPostList = (props) => {
     useEffect(() => {
         fetchMyPosts()
     }, [])
-
         
         return (
             <>
